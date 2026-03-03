@@ -137,6 +137,25 @@ export function splitCsvValues(value: string): string[] {
     .filter((item) => item.length > 0);
 }
 
+export function decodeHtmlEntities(text: string): string {
+  const entities: Record<string, string> = {
+    '&quot;': '"',
+    '&#39;': "'",
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&#x27;': "'",
+    '&ndash;': '–',
+    '&mdash;': '—'
+  };
+  
+  let decoded = text.replace(/&[#\w]+;/g, (entity) => entities[entity] || entity);
+  // Replace double hyphens with em dash
+  decoded = decoded.replace(/--/g, ', ');
+  
+  return decoded;
+}
+
 export function getInitials(name: string): string {
   const parts = name
     .trim()

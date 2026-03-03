@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import type { MovieData } from "@/lib/types";
-import { validateImdbId } from "@/lib/utils";
+import { validateImdbId, decodeHtmlEntities } from "@/lib/utils";
 
 const omdbRatingSchema = z.object({
   Source: z.string(),
@@ -120,5 +120,13 @@ export async function fetchMovie(imdbId: string): Promise<MovieData> {
     );
   }
 
-  return movieData;
+  // Decode HTML entities in text fields
+  return {
+    ...movieData,
+    Title: decodeHtmlEntities(movieData.Title),
+    Plot: decodeHtmlEntities(movieData.Plot),
+    Director: decodeHtmlEntities(movieData.Director),
+    Writer: decodeHtmlEntities(movieData.Writer),
+    Actors: decodeHtmlEntities(movieData.Actors)
+  };
 }
