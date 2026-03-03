@@ -1,6 +1,7 @@
 import type { SentimentResult } from "@/lib/types";
 
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
+const TMDB_READ_TOKEN = process.env.TMDB_READ_TOKEN;
 const BASE_URL = "https://api.themoviedb.org/3";
 
 type ReviewItem = NonNullable<SentimentResult["reviews"]>[number];
@@ -21,13 +22,17 @@ interface TmdbReviewsResponse {
 }
 
 export async function getTMDBReviews(imdbId: string): Promise<ReviewItem[]> {
-  if (!TMDB_API_KEY) {
-    throw new Error("TMDB_API_KEY is not configured");
+  if (!TMDB_API_KEY && !TMDB_READ_TOKEN) {
+    throw new Error("TMDB_API_KEY or TMDB_READ_TOKEN is not configured");
   }
 
-  const findResponse = await fetch(
-    `${BASE_URL}/find/${imdbId}?api_key=${TMDB_API_KEY}&external_source=imdb_id`
-  );
+  const findUrl = TMDB_READ_TOKEN 
+    ? `${BASE_URL}/find/${imdbId}?external_source=imdb_id`
+    : `${BASE_URL}/find/${imdbId}?api_key=${TMDB_API_KEY}&external_source=imdb_id`;
+
+  const findResponse = await fetch(findUrl, {
+    ...(TMDB_READ_TOKEN && { headers: { 'Authorization': `Bearer ${TMDB_READ_TOKEN}` } })
+  });
 
   if (!findResponse.ok) {
     throw new Error(`TMDB API error: ${findResponse.status}`);
@@ -40,9 +45,13 @@ export async function getTMDBReviews(imdbId: string): Promise<ReviewItem[]> {
     throw new Error("Movie not found");
   }
 
-  const reviewsResponse = await fetch(
-    `${BASE_URL}/movie/${movie.id.toString()}/reviews?api_key=${TMDB_API_KEY}`
-  );
+  const reviewsUrl = TMDB_READ_TOKEN
+    ? `${BASE_URL}/movie/${movie.id.toString()}/reviews`
+    : `${BASE_URL}/movie/${movie.id.toString()}/reviews?api_key=${TMDB_API_KEY}`;
+
+  const reviewsResponse = await fetch(reviewsUrl, {
+    ...(TMDB_READ_TOKEN && { headers: { 'Authorization': `Bearer ${TMDB_READ_TOKEN}` } })
+  });
 
   if (!reviewsResponse.ok) {
     throw new Error("Failed to fetch reviews");
@@ -65,7 +74,7 @@ export async function getTMDBReviews(imdbId: string): Promise<ReviewItem[]> {
       return {
         author,
         content: review.content,
-        avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(author)}&background=1a1a1a&color=ffffff&size=64`
+        avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(author)}&background=random&size=64`
       };
     });
 }
