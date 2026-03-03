@@ -9,12 +9,12 @@ interface CastListProps {
 }
 
 const AVATAR_GRADIENTS = [
-  "linear-gradient(135deg, #2a2a44 0%, #4c2b6b 100%)",
-  "linear-gradient(135deg, #17304a 0%, #23597d 100%)",
-  "linear-gradient(135deg, #2d2f52 0%, #6544a3 100%)",
-  "linear-gradient(135deg, #2c233f 0%, #8a3d56 100%)",
-  "linear-gradient(135deg, #1f3b3a 0%, #2c7d68 100%)",
-  "linear-gradient(135deg, #3a2f22 0%, #8f5f2f 100%)"
+  "linear-gradient(135deg, #3e2416 0%, #8a4515 100%)",
+  "linear-gradient(135deg, #2f1f18 0%, #7b3823 100%)",
+  "linear-gradient(135deg, #3c271b 0%, #8a5a2d 100%)",
+  "linear-gradient(135deg, #40281f 0%, #9e4a2f 100%)",
+  "linear-gradient(135deg, #2c1f17 0%, #77553a 100%)",
+  "linear-gradient(135deg, #3d2315 0%, #a63d12 100%)"
 ];
 
 function hashName(name: string): number {
@@ -54,10 +54,10 @@ export function CastList({ actors }: CastListProps): JSX.Element {
               hidden: { opacity: 0, y: 8 },
               visible: { opacity: 1, y: 0 }
             }}
-            className={[
-              "group rounded-card min-w-[90px] flex-shrink-0 px-1.5 py-1 text-center",
-              "transition duration-200 ease-out hover:-translate-y-[1px]"
-            ].join(" ")}
+              className={[
+                "group rounded-card min-w-[90px] flex-shrink-0 px-1.5 py-1 text-center",
+                "transition duration-200 ease-out hover:-translate-y-[1px]"
+              ].join(" ")}
           >
             <div
               className="mx-auto flex h-12 w-12 items-center justify-center rounded-full text-[0.9rem] font-semibold text-[color:var(--text-primary)] transition duration-200 group-hover:scale-[1.08]"

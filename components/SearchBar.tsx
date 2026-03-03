@@ -68,10 +68,10 @@ export function SearchBar({
   }
 
   const wrapperClassName = [
-    "relative rounded-[14px] border bg-white/[0.04] backdrop-blur-md",
+    "relative rounded-[14px] border bg-[rgba(15,11,9,0.72)] backdrop-blur-md",
     "transition-[border-color,box-shadow,transform] duration-200 ease-out",
-    "border-border hover:border-white/15",
-    "focus-within:border-primary focus-within:shadow-[0_0_0_3px_rgba(232,185,35,0.15),0_0_20px_rgba(232,185,35,0.08)]",
+    "border-border hover:border-[rgba(255,228,205,0.22)]",
+    "focus-within:border-primary focus-within:shadow-[0_0_0_3px_rgba(236,78,2,0.2),0_0_22px_rgba(236,78,2,0.18)]",
     isShaking ? "animate-[imdb-shake_0.3s_ease-in-out]" : "",
     error ? "border-[#f87171] focus-within:border-[#f87171]" : ""
   ].join(" ");
@@ -101,7 +101,7 @@ export function SearchBar({
             className={[
               "h-14 w-full rounded-[14px] border border-transparent bg-transparent pl-4 pr-14",
               "text-[0.9375rem] text-[color:var(--text-primary)] outline-none",
-              "placeholder:text-[color:var(--text-tertiary)]",
+              "placeholder:text-[color:var(--text-tertiary)]/90",
               "transition-[color,border-color] duration-200"
             ].join(" ")}
           />
@@ -112,9 +112,9 @@ export function SearchBar({
             aria-label={isLoading ? "Analyzing..." : "Analyze Movie"}
             className={[
               "absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-[10px] text-primary-foreground",
-              "bg-gradient-to-br from-primary via-[#f0cc53] to-[#c99310]",
-              "shadow-[0_6px_18px_rgba(232,185,35,0.28)] transition duration-200 ease-out",
-              "hover:[transform:translateY(-50%)_scale(1.05)] hover:brightness-110 hover:shadow-[0_10px_26px_rgba(232,185,35,0.34)]",
+              "bg-gradient-to-br from-[#f89a62] via-primary to-[#a63706]",
+              "shadow-[0_6px_18px_rgba(236,78,2,0.32)] transition duration-200 ease-out",
+              "hover:[transform:translateY(-50%)_scale(1.05)] hover:brightness-110 hover:shadow-[0_10px_26px_rgba(236,78,2,0.4)]",
               "active:[transform:translateY(-50%)_scale(0.98)]",
               "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-primary",
               "disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:[transform:translateY(-50%)_scale(1)]"
@@ -184,7 +184,7 @@ export function SearchBar({
               className={[
                 "rounded-full border px-3 py-1 text-[0.72rem]",
                 "border-border bg-transparent text-[color:var(--text-secondary)] transition duration-150 ease-out",
-                "hover:-translate-y-px hover:border-primary/70 hover:bg-[color:var(--gold-glow)] hover:text-[color:var(--text-primary)]",
+                "hover:-translate-y-px hover:border-primary/70 hover:bg-[rgba(236,78,2,0.16)] hover:text-[color:var(--text-primary)]",
                 "active:scale-[0.96]",
                 "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-primary"
               ].join(" ")}

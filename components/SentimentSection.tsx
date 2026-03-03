@@ -8,9 +8,9 @@ import type { SentimentResult } from "@/lib/types";
 import { SentimentBadge } from "@/components/SentimentBadge";
 
 const SENTIMENT_COLORS = {
-  positive: { color: "#4ade80", dim: "rgba(74,222,128,0.16)", background: "rgba(74,222,128,0.08)" },
-  mixed: { color: "#fbbf24", dim: "rgba(251,191,36,0.16)", background: "rgba(251,191,36,0.08)" },
-  negative: { color: "#f87171", dim: "rgba(248,113,113,0.16)", background: "rgba(248,113,113,0.08)" }
+  positive: { color: "#4ade80", dim: "rgba(74,222,128,0.16)" },
+  mixed: { color: "#fbbf24", dim: "rgba(251,191,36,0.16)" },
+  negative: { color: "#f87171", dim: "rgba(248,113,113,0.16)" }
 } as const;
 
 interface ScoreBarProps {
@@ -93,7 +93,7 @@ export function SentimentSection({
       : null;
 
   return (
-    <section className="relative overflow-hidden rounded-[16px] border border-border bg-card p-7 sm:p-[28px]">
+    <section className="relative overflow-hidden rounded-[16px] border border-border bg-card p-6 sm:p-7">
       <div
         aria-hidden
         className="pointer-events-none absolute -right-10 -top-10 h-[180px] w-[180px] rounded-full"
@@ -103,8 +103,8 @@ export function SentimentSection({
       <div className="relative z-10 flex flex-col gap-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="eyebrow">AI Sentiment Analysis</p>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1 text-[0.65rem] text-[color:var(--text-tertiary)]">
-            <span aria-hidden>⚡</span>
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-[rgba(24,16,13,0.72)] px-2.5 py-1 text-[0.65rem] text-[color:var(--text-tertiary)]">
+            <span aria-hidden>*</span>
             Powered by Groq x LLaMA
           </span>
         </div>
@@ -128,7 +128,7 @@ export function SentimentSection({
             <button
               type="button"
               onClick={onRetry}
-              className="inline-flex h-10 items-center justify-center rounded-full bg-gradient-to-br from-primary via-[#f0cc53] to-[#c99310] px-5 text-xs font-semibold text-primary-foreground transition duration-200 hover:-translate-y-px hover:brightness-110 active:translate-y-0 active:scale-[0.98]"
+              className="inline-flex h-10 items-center justify-center rounded-full bg-gradient-to-br from-[#f89a62] via-primary to-[#a63706] px-5 text-xs font-semibold text-primary-foreground transition duration-200 hover:-translate-y-px hover:brightness-110 active:translate-y-0 active:scale-[0.98]"
             >
               Retry Analysis
             </button>
@@ -174,7 +174,7 @@ export function SentimentSection({
                   aria-hidden
                   className="pointer-events-none absolute left-0 top-1 select-none text-[2.5rem] leading-[0.5] text-primary"
                 >
-                  “
+                  "
                 </span>
                 <p className="text-[0.9375rem] leading-[1.8] text-[color:var(--text-secondary)]">
                   {sentiment.summary}
@@ -228,7 +228,7 @@ export function SentimentSection({
             ) : null}
 
             <p className="text-right font-mono text-[0.72rem] text-[color:var(--text-tertiary)]">
-              Cached · {new Date(sentiment.cachedAt).toLocaleDateString()}
+              Cached - {new Date(sentiment.cachedAt).toLocaleDateString()}
             </p>
           </motion.div>
         ) : null}

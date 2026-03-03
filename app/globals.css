@@ -4,73 +4,73 @@
 
 @layer base {
   :root {
-    --background: 240 33% 5%;
-    --foreground: 240 35% 96%;
-    --card: 240 27% 8%;
-    --card-foreground: 240 35% 96%;
-    --muted: 240 31% 13%;
-    --muted-foreground: 240 17% 60%;
-    --border: 0 0% 100% / 0.06;
-    --input: 0 0% 100% / 0.06;
-    --primary: 44 80% 52%;
-    --primary-foreground: 240 33% 6%;
+    --background: 26 18% 5%;
+    --foreground: 35 44% 93%;
+    --card: 24 18% 8%;
+    --card-foreground: 35 44% 93%;
+    --muted: 24 15% 12%;
+    --muted-foreground: 31 18% 62%;
+    --border: 30 20% 80% / 0.12;
+    --input: 30 20% 80% / 0.12;
+    --primary: 18 96% 47%;
+    --primary-foreground: 35 44% 95%;
     --destructive: 0 90% 71%;
-    --destructive-foreground: 240 33% 6%;
+    --destructive-foreground: 26 18% 5%;
     --radius: 0.875rem;
-    --popover: 240 27% 8%;
-    --popover-foreground: 240 35% 96%;
-    --secondary: 240 31% 13%;
-    --secondary-foreground: 240 35% 96%;
-    --accent: 240 31% 13%;
-    --accent-foreground: 240 35% 96%;
-    --ring: 44 80% 52%;
-    --chart-1: 44 80% 52%;
+    --popover: 24 18% 8%;
+    --popover-foreground: 35 44% 93%;
+    --secondary: 24 15% 12%;
+    --secondary-foreground: 35 44% 93%;
+    --accent: 24 15% 12%;
+    --accent-foreground: 35 44% 93%;
+    --ring: 18 96% 47%;
+    --chart-1: 18 96% 47%;
     --chart-2: 146 67% 58%;
-    --chart-3: 240 17% 60%;
+    --chart-3: 31 18% 62%;
     --chart-4: 39 96% 55%;
     --chart-5: 0 90% 71%;
 
-    --bg-base: #080810;
-    --bg-surface: #0f0f1a;
-    --bg-elevated: #16162a;
-    --border-hover: rgba(255, 255, 255, 0.12);
-    --gold: #e8b923;
-    --gold-glow: rgba(232, 185, 35, 0.15);
-    --gold-dim: rgba(232, 185, 35, 0.6);
+    --bg-base: #090705;
+    --bg-surface: #110e0a;
+    --bg-elevated: #1a140f;
+    --border-hover: rgba(255, 232, 214, 0.24);
+    --gold: #ec4e02;
+    --gold-glow: rgba(236, 78, 2, 0.16);
+    --gold-dim: rgba(236, 78, 2, 0.62);
     --positive: #4ade80;
     --positive-bg: rgba(74, 222, 128, 0.08);
     --mixed: #fbbf24;
     --mixed-bg: rgba(251, 191, 36, 0.08);
     --negative: #f87171;
     --negative-bg: rgba(248, 113, 113, 0.08);
-    --text-primary: #f0f0f8;
-    --text-secondary: #8888aa;
-    --text-tertiary: #4a4a6a;
+    --text-primary: #f3ede2;
+    --text-secondary: #c0ad95;
+    --text-tertiary: #7e6b56;
   }
 
   .dark {
-    --background: 240 33% 5%;
-    --foreground: 240 35% 96%;
-    --card: 240 27% 8%;
-    --card-foreground: 240 35% 96%;
-    --muted: 240 31% 13%;
-    --muted-foreground: 240 17% 60%;
-    --border: 0 0% 100% / 0.06;
-    --input: 0 0% 100% / 0.06;
-    --primary: 44 80% 52%;
-    --primary-foreground: 240 33% 6%;
+    --background: 26 18% 5%;
+    --foreground: 35 44% 93%;
+    --card: 24 18% 8%;
+    --card-foreground: 35 44% 93%;
+    --muted: 24 15% 12%;
+    --muted-foreground: 31 18% 62%;
+    --border: 30 20% 80% / 0.12;
+    --input: 30 20% 80% / 0.12;
+    --primary: 18 96% 47%;
+    --primary-foreground: 35 44% 95%;
     --destructive: 0 90% 71%;
-    --destructive-foreground: 240 33% 6%;
-    --popover: 240 27% 8%;
-    --popover-foreground: 240 35% 96%;
-    --secondary: 240 31% 13%;
-    --secondary-foreground: 240 35% 96%;
-    --accent: 240 31% 13%;
-    --accent-foreground: 240 35% 96%;
-    --ring: 44 80% 52%;
-    --chart-1: 44 80% 52%;
+    --destructive-foreground: 26 18% 5%;
+    --popover: 24 18% 8%;
+    --popover-foreground: 35 44% 93%;
+    --secondary: 24 15% 12%;
+    --secondary-foreground: 35 44% 93%;
+    --accent: 24 15% 12%;
+    --accent-foreground: 35 44% 93%;
+    --ring: 18 96% 47%;
+    --chart-1: 18 96% 47%;
     --chart-2: 146 67% 58%;
-    --chart-3: 240 17% 60%;
+    --chart-3: 31 18% 62%;
     --chart-4: 39 96% 55%;
     --chart-5: 0 90% 71%;
   }
@@ -93,8 +93,9 @@
     background-color: var(--bg-base);
     color: var(--text-primary);
     background-image:
-      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(232, 185, 35, 0.06) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 40% at 30% 80%, rgba(99, 79, 200, 0.045) 0%, transparent 60%);
+      radial-gradient(ellipse 90% 55% at 50% 0%, rgba(236, 78, 2, 0.14) 0%, transparent 72%),
+      radial-gradient(ellipse 65% 50% at 85% 94%, rgba(109, 43, 12, 0.22) 0%, transparent 62%),
+      radial-gradient(ellipse 65% 42% at 12% 82%, rgba(79, 26, 8, 0.2) 0%, transparent 64%);
     font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -146,7 +147,7 @@
     inset: 0;
     pointer-events: none;
     z-index: 100;
-    opacity: 0.04;
+    opacity: 0.035;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23noise)' opacity='0.8'/%3E%3C/svg%3E");
   }
 

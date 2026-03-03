@@ -1,5 +1,6 @@
 "use client";
 
+import { Star } from "lucide-react";
 import Image from "next/image";
 
 import type { MovieData } from "@/lib/types";
@@ -38,9 +39,9 @@ export function MovieCard({ movie }: MovieCardProps): JSX.Element {
       <div
         className={[
           "group relative overflow-hidden rounded-[16px] border border-border bg-card",
-          "shadow-[0_32px_64px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.06)]",
+          "shadow-[0_32px_64px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,214,177,0.08)]",
           "transition-[transform,box-shadow] [transition-duration:400ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]",
-          "hover:scale-[1.02] hover:shadow-[0_36px_72px_rgba(0,0,0,0.7),0_0_0_1px_rgba(255,255,255,0.12)]"
+          "hover:scale-[1.02] hover:shadow-[0_36px_72px_rgba(0,0,0,0.7),0_0_0_1px_rgba(255,214,177,0.2)]"
         ].join(" ")}
       >
         <Image
@@ -60,9 +61,7 @@ export function MovieCard({ movie }: MovieCardProps): JSX.Element {
         <div>
           <p className="eyebrow">IMDb Rating</p>
           <div className="mt-2 flex items-end gap-2">
-            <span aria-hidden className="text-[1.1rem] leading-none text-primary">
-              ★
-            </span>
+            <Star aria-hidden className="h-[1.05rem] w-[1.05rem] fill-primary text-primary" />
             <span className="font-mono text-[1.4rem] leading-none text-[color:var(--text-primary)]">
               {safeValue(movie.imdbRating)}
             </span>

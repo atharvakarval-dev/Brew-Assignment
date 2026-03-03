@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Suspense, lazy, useState } from "react";
 
 import { SearchBar } from "@/components/SearchBar";
+import { ShinyButton } from "@/components/ui/flow-button";
 
 const Dithering = lazy(() =>
   import("@paper-design/shaders-react").then((mod) => ({ default: mod.Dithering }))
@@ -35,24 +36,24 @@ export function CTASection(): JSX.Element {
   }
 
   return (
-    <section className="relative flex min-h-screen w-full items-center justify-center px-4 py-8 sm:px-6 sm:py-12">
+    <section className="relative flex min-h-screen w-full items-center justify-center px-4 py-6 sm:px-6 sm:py-10">
       <div
         className="relative w-full max-w-[1100px]"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="relative overflow-hidden rounded-[28px] border border-border bg-card/85 shadow-[0_28px_80px_rgba(0,0,0,0.62)] backdrop-blur-sm transition duration-500 sm:rounded-[36px] lg:rounded-[42px]">
+        <div className="relative overflow-hidden rounded-[28px] border border-border bg-card/90 shadow-[0_30px_86px_rgba(0,0,0,0.62)] backdrop-blur-sm transition duration-500 sm:rounded-[36px] lg:rounded-[42px]">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 z-0"
             style={{
               backgroundImage:
-                "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(232,185,35,0.07) 0%, transparent 70%), radial-gradient(ellipse 60% 40% at 30% 80%, rgba(99,79,200,0.05) 0%, transparent 60%)"
+                "radial-gradient(ellipse 85% 58% at 50% 0%, rgba(236,78,2,0.2) 0%, transparent 70%), radial-gradient(ellipse 70% 44% at 88% 85%, rgba(150,50,8,0.16) 0%, transparent 58%), radial-gradient(ellipse 62% 42% at 12% 82%, rgba(120,40,10,0.16) 0%, transparent 60%)"
             }}
           />
 
           <Suspense fallback={<div className="absolute inset-0 bg-muted/20" />}>
-            <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.17] mix-blend-screen">
+            <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.15] mix-blend-screen">
               <Dithering
                 colorBack="#00000000"
                 colorFront="#EC4E02"
@@ -81,35 +82,35 @@ export function CTASection(): JSX.Element {
             />
           ))}
 
-          <div className="relative z-20 mx-auto flex min-h-[560px] w-full max-w-[760px] flex-col items-center justify-center px-5 py-14 text-center sm:min-h-[620px] sm:px-8 sm:py-16 md:px-12 lg:min-h-[670px]">
+          <div className="relative z-20 mx-auto flex min-h-[520px] w-full max-w-[760px] flex-col items-center justify-center px-5 py-12 text-center sm:min-h-[590px] sm:px-8 sm:py-14 md:px-12 lg:min-h-[640px]">
             <motion.p
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: REVEAL_EASE, delay: 0.04 }}
-              className="mb-5 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-primary/90 sm:mb-6"
+              className="mb-5 inline-flex items-center rounded-full border border-[rgba(255,235,214,0.16)] bg-[rgba(11,9,7,0.65)] px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-primary/90 sm:mb-6"
             >
-              AI-POWERED CINEMA INTELLIGENCE
+              Brew-Powered Cinema Intelligence
             </motion.p>
 
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: REVEAL_EASE, delay: 0.16 }}
-              className="font-serif text-[clamp(2.1rem,8vw,5rem)] font-bold leading-[1.08] tracking-[-0.02em] text-[color:var(--text-primary)]"
+              className="font-serif text-[clamp(2rem,8vw,5.1rem)] font-bold leading-[1.06] tracking-[-0.022em] text-[color:var(--text-primary)]"
             >
-              Discover What
+              Understand What
               <br />
               <span
                 className="italic"
                 style={{
                   background:
-                    "linear-gradient(135deg, #e8b923 0%, #f0d060 50%, #c8960f 100%)",
+                    "linear-gradient(135deg, #f89a62 0%, #ec4e02 55%, #b23d06 100%)",
                   WebkitBackgroundClip: "text",
                   backgroundClip: "text",
                   WebkitTextFillColor: "transparent"
                 }}
               >
-                Audiences Really Think
+                Your Audience Feels
               </span>
             </motion.h1>
 
@@ -117,10 +118,10 @@ export function CTASection(): JSX.Element {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: REVEAL_EASE, delay: 0.28 }}
-              className="mt-6 max-w-[430px] text-[0.95rem] leading-[1.75] text-[color:var(--text-secondary)] sm:text-[1rem]"
+              className="mt-6 max-w-[450px] text-[0.95rem] leading-[1.78] text-[color:var(--text-secondary)] sm:text-[1rem]"
             >
-              Enter any IMDb movie ID to get AI-powered sentiment analysis and audience insights in
-              seconds.
+              Enter any IMDb movie ID to get emotionally rich, filmmaker-friendly sentiment analysis
+              in seconds.
             </motion.p>
 
             <motion.div
@@ -132,17 +133,14 @@ export function CTASection(): JSX.Element {
               <SearchBar onSubmit={handleSubmit} exampleChips={EXAMPLE_MOVIES} />
             </motion.div>
 
-            <motion.button
-              type="button"
+            <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: REVEAL_EASE, delay: 0.52 }}
-              onClick={() => handleSubmit("tt0133093")}
-              className="group mt-8 inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-gradient-to-br from-primary via-[#f0cd58] to-[#cb9610] px-7 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_rgba(232,185,35,0.28)] transition-all duration-200 hover:-translate-y-px hover:brightness-110 hover:shadow-[0_14px_36px_rgba(232,185,35,0.35)] active:translate-y-0 active:scale-[0.98]"
+              className="mt-8"
             >
-              Try The Matrix
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-            </motion.button>
+              <ShinyButton onClick={() => handleSubmit("tt0133093")}>Try The Matrix</ShinyButton>
+            </motion.div>
           </div>
         </div>
       </div>

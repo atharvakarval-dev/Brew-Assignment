@@ -97,12 +97,12 @@ export default function MovieDetailPage(): JSX.Element {
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 75% 50% at 68% 0%, rgba(232,185,35,0.06) 0%, transparent 70%), radial-gradient(ellipse 60% 40% at 14% 84%, rgba(96,77,190,0.05) 0%, transparent 64%)"
+            "radial-gradient(ellipse 78% 52% at 68% 0%, rgba(236,78,2,0.16) 0%, transparent 70%), radial-gradient(ellipse 58% 42% at 14% 84%, rgba(132,48,12,0.14) 0%, transparent 64%)"
         }}
         aria-hidden
       />
 
-      <div className="mx-auto w-full max-w-[1100px] px-4 pb-16 pt-8 sm:px-6 sm:pb-20 sm:pt-10">
+      <div className="mx-auto w-full max-w-[1100px] px-4 pb-16 pt-7 sm:px-6 sm:pb-20 sm:pt-10">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <Link
             href="/"
@@ -112,14 +112,14 @@ export default function MovieDetailPage(): JSX.Element {
           </Link>
 
           <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full border border-border bg-card px-3 py-1 font-mono text-[0.76rem] text-[color:var(--text-secondary)]">
+            <span className="rounded-full border border-border bg-card/85 px-3 py-1 font-mono text-[0.76rem] text-[color:var(--text-secondary)]">
               {imdbId}
             </span>
             <a
               href={`https://www.imdb.com/title/${imdbId}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1 text-[0.74rem] text-[color:var(--text-secondary)] transition duration-150 hover:border-primary/40 hover:text-[color:var(--text-primary)]"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/85 px-3 py-1 text-[0.74rem] text-[color:var(--text-secondary)] transition duration-150 hover:border-primary/50 hover:text-[color:var(--text-primary)]"
             >
               IMDb
               <ExternalLink className="h-3 w-3" />
@@ -143,7 +143,7 @@ export default function MovieDetailPage(): JSX.Element {
                 {genreTags.map((genre) => (
                   <span
                     key={genre}
-                    className="inline-flex items-center rounded-full border border-border bg-[color:var(--bg-elevated)] px-[10px] py-[3px] text-[0.72rem] text-[color:var(--text-secondary)] transition duration-150 hover:border-primary/45 hover:text-[color:var(--text-primary)]"
+                    className="inline-flex items-center rounded-full border border-border bg-[color:var(--bg-elevated)] px-[10px] py-[3px] text-[0.72rem] text-[color:var(--text-secondary)] transition duration-150 hover:border-primary/50 hover:text-[color:var(--text-primary)]"
                   >
                     {genre}
                   </span>
