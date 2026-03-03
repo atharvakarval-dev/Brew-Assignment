@@ -5,6 +5,8 @@ import { z } from "zod";
 import type { MovieData, ParsedSentiment } from "@/lib/types";
 import { clampScore } from "@/lib/utils";
 
+type ReviewInput = string | { content: string };
+
 // ─── Constants ───────────────────────────────────────────────────────────────
 
 const SYSTEM_PROMPT = `You are a brutally honest film critic and sentiment analyst with 20 years of experience.
@@ -52,9 +54,12 @@ export function isAIClientError(error: unknown): error is AIClientError {
 
 // ─── Prompt Builder ──────────────────────────────────────────────────────────
 
-function buildUserPrompt(movie: MovieData, reviews: string[]): string {
+function buildUserPrompt(movie: MovieData, reviews: ReviewInput[]): string {
   const reviewBlock = reviews
-    .map((r, i) => `Review ${i + 1}: "${r}"`)
+    .map((review, index) => {
+      const content = typeof review === "string" ? review : review.content;
+      return `Review ${index + 1}: "${content}"`;
+    })
     .join("\n");
 
   // Extract RT and Metacritic scores if available
@@ -251,7 +256,7 @@ async function callGroq(prompt: string): Promise<string> {
 
 export async function analyzeAudienceSentiment(
   movie: MovieData,
-  reviews: string[]
+  reviews: ReviewInput[]
 ): Promise<ParsedSentiment> {
   // Fallback to mock reviews if none provided
   const effectiveReviews =

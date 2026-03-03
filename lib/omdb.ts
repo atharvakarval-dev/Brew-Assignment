@@ -72,7 +72,7 @@ export async function fetchMovie(imdbId: string): Promise<MovieData> {
     response = await fetch(endpoint, {
       method: "GET"
     });
-  } catch (error: unknown) {
+  } catch {
     throw new OmdbClientError(
       `Unable to reach OMDB while fetching '${imdbId}'. Please retry in a moment.`,
       503
@@ -89,7 +89,7 @@ export async function fetchMovie(imdbId: string): Promise<MovieData> {
   let payload: unknown;
   try {
     payload = (await response.json()) as unknown;
-  } catch (error: unknown) {
+  } catch {
     throw new OmdbClientError(
       `OMDB returned malformed JSON for IMDb ID '${imdbId}'. Please retry later.`,
       503

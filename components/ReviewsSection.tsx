@@ -14,7 +14,7 @@ export function ReviewsSection({ reviews }: ReviewsSectionProps): JSX.Element {
             key={`${review.slice(0, 24)}-${index.toString()}`}
             className="rounded-card border border-border bg-card/75 p-4 text-sm text-muted-foreground"
           >
-            <p className="leading-relaxed">"{review}"</p>
+            <p className="leading-relaxed">&quot;{review}&quot;</p>
           </article>
         ))}
       </div>

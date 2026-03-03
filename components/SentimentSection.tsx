@@ -84,6 +84,7 @@ export function SentimentSection({
   onRetry
 }: SentimentSectionProps): JSX.Element {
   const colorSet = sentiment ? SENTIMENT_COLORS[sentiment.sentiment] : SENTIMENT_COLORS.mixed;
+  const hasPayload = !loading && !error && Boolean(sentiment);
 
   const audienceVsCritics =
     sentiment &&
@@ -93,7 +94,12 @@ export function SentimentSection({
       : null;
 
   return (
-    <section className="relative overflow-hidden rounded-[16px] border border-border bg-card p-6 sm:p-7">
+    <section
+      className={[
+        "relative overflow-hidden rounded-[16px] border border-border bg-card p-6 sm:p-7",
+        hasPayload ? "min-h-[340px]" : "min-h-[280px]"
+      ].join(" ")}
+    >
       <div
         aria-hidden
         className="pointer-events-none absolute -right-10 -top-10 h-[180px] w-[180px] rounded-full"
@@ -128,7 +134,7 @@ export function SentimentSection({
             <button
               type="button"
               onClick={onRetry}
-              className="inline-flex h-10 items-center justify-center rounded-full bg-gradient-to-br from-[#f89a62] via-primary to-[#a63706] px-5 text-xs font-semibold text-primary-foreground transition duration-200 hover:-translate-y-px hover:brightness-110 active:translate-y-0 active:scale-[0.98]"
+              className="inline-flex h-10 items-center justify-center rounded-full bg-gradient-to-br from-[#f89a62] via-primary to-[#a63706] px-5 text-xs font-semibold text-primary-foreground transition duration-200 hover:-translate-y-px hover:brightness-110 active:translate-y-0 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-primary"
             >
               Retry Analysis
             </button>
@@ -174,7 +180,7 @@ export function SentimentSection({
                   aria-hidden
                   className="pointer-events-none absolute left-0 top-1 select-none text-[2.5rem] leading-[0.5] text-primary"
                 >
-                  "
+                  &quot;
                 </span>
                 <p className="text-[0.9375rem] leading-[1.8] text-[color:var(--text-secondary)]">
                   {sentiment.summary}

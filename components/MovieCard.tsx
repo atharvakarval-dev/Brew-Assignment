@@ -33,6 +33,7 @@ export function MovieCard({ movie }: MovieCardProps): JSX.Element {
   const posterUrl = getPosterUrl(movie.Poster);
   const posterIsInline = posterUrl.startsWith("data:image");
   const genres = splitCsvValues(movie.Genre);
+  const imdbVotes = movie.imdbVotes && movie.imdbVotes !== "N/A" ? movie.imdbVotes : null;
 
   return (
     <article className="w-full">
@@ -57,7 +58,7 @@ export function MovieCard({ movie }: MovieCardProps): JSX.Element {
         />
       </div>
 
-      <div className="mt-6 rounded-[16px] border border-border bg-card p-6">
+      <div className="mt-6 rounded-[16px] border border-border bg-card p-6 transition duration-200 hover:-translate-y-px hover:border-[color:var(--border-hover)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
         <div>
           <p className="eyebrow">IMDb Rating</p>
           <div className="mt-2 flex items-end gap-2">
@@ -67,6 +68,9 @@ export function MovieCard({ movie }: MovieCardProps): JSX.Element {
             </span>
             <span className="pb-[2px] text-[0.8rem] text-[color:var(--text-tertiary)]">/10</span>
           </div>
+          {imdbVotes ? (
+            <p className="mt-2 font-mono text-[0.74rem] text-[color:var(--text-tertiary)]">{`${imdbVotes} votes`}</p>
+          ) : null}
 
           <p className="sr-only">{`IMDb ${movie.imdbRating}`}</p>
         </div>
@@ -96,7 +100,7 @@ export function MovieCard({ movie }: MovieCardProps): JSX.Element {
             <p className="text-[0.65rem] uppercase tracking-[0.12em] text-[color:var(--text-tertiary)]">
               Genre
             </p>
-            <p className="mt-1 text-[color:var(--text-secondary)]">{safeValue(movie.Genre)}</p>
+            <p className="mt-1 break-words text-[color:var(--text-secondary)]">{safeValue(movie.Genre)}</p>
           </div>
         </div>
 
@@ -114,14 +118,14 @@ export function MovieCard({ movie }: MovieCardProps): JSX.Element {
           ))}
         </div>
 
-        <div className="mt-5 space-y-2 text-[0.85rem] text-[color:var(--text-secondary)]">
-          <p>
+        <div className="mt-5 space-y-2 text-[0.85rem] leading-[1.65] text-[color:var(--text-secondary)]">
+          <p className="break-words">
             <span className="text-[0.65rem] uppercase tracking-[0.12em] text-[color:var(--text-tertiary)]">
               Director:
             </span>{" "}
             {safeValue(movie.Director)}
           </p>
-          <p>
+          <p className="break-words">
             <span className="text-[0.65rem] uppercase tracking-[0.12em] text-[color:var(--text-tertiary)]">
               Writer:
             </span>{" "}

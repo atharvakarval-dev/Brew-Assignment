@@ -6,6 +6,7 @@ import { fetchMovie, isOmdbClientError } from "@/lib/omdb";
 import { validateImdbId } from "@/lib/utils";
 
 export const runtime = "edge";
+export const preferredRegion = "auto";
 
 interface RouteContext {
   params: Promise<{
@@ -19,10 +20,13 @@ const getCachedMovie = unstable_cache(
   { revalidate: 3600 }
 );
 
+const MOVIE_CACHE_CONTROL = "public, max-age=60, s-maxage=3600, stale-while-revalidate=86400";
+
 export async function GET(
   _request: Request,
   context: RouteContext
 ): Promise<NextResponse<MovieData | ApiErrorResponse>> {
+  const start = performance.now();
   const { imdbId } = await context.params;
 
   if (!validateImdbId(imdbId)) {
@@ -37,7 +41,13 @@ export async function GET(
 
   try {
     const movie = await getCachedMovie(imdbId);
-    return NextResponse.json(movie, { status: 200 });
+    return NextResponse.json(movie, {
+      status: 200,
+      headers: {
+        "Cache-Control": MOVIE_CACHE_CONTROL,
+        "Server-Timing": `movie;dur=${(performance.now() - start).toFixed(1)}`
+      }
+    });
   } catch (error: unknown) {
     console.error("[app/api/movie/[imdbId]/route.ts][GET]", error);
 
@@ -47,7 +57,10 @@ export async function GET(
           error: error.message,
           statusCode: error.statusCode
         },
-        { status: error.statusCode }
+        {
+          status: error.statusCode,
+          headers: { "Server-Timing": `app;dur=${(performance.now() - start).toFixed(1)}` }
+        }
       );
     }
 
@@ -57,7 +70,10 @@ export async function GET(
           "Movie service is currently unavailable due to a downstream connectivity issue. Please retry shortly.",
         statusCode: 503
       },
-      { status: 503 }
+      {
+        status: 503,
+        headers: { "Server-Timing": `app;dur=${(performance.now() - start).toFixed(1)}` }
+      }
     );
   }
 }

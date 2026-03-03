@@ -39,7 +39,7 @@ export function ShinyButton({ children, onClick, className = "" }: ShinyButtonPr
         .shiny-cta {
           --shiny-cta-bg: linear-gradient(135deg, #f89a62 0%, #ec4e02 55%, #b23d06 100%);
           --shiny-cta-bg-subtle: #1a0f0a;
-          --shiny-cta-fg: #ffffff;
+          --shiny-cta-fg: var(--text-primary);
           --shiny-cta-highlight: #f89a62;
           --shiny-cta-highlight-subtle: #ec4e02;
           --animation: gradient-angle linear infinite;
@@ -72,6 +72,10 @@ export function ShinyButton({ children, onClick, className = "" }: ShinyButtonPr
           box-shadow: 0 10px 34px rgba(236,78,2,0.3);
           transition: var(--transition);
           transition-property: --gradient-angle-offset, --gradient-percent, --gradient-shine, box-shadow, transform;
+        }
+
+        .shiny-cta:focus-visible {
+          outline: 2px solid var(--gold);
         }
 
         .shiny-cta::before,
@@ -190,7 +194,7 @@ export function ShinyButton({ children, onClick, className = "" }: ShinyButtonPr
         }
       `}</style>
 
-      <button className={`shiny-cta ${className}`} onClick={onClick}>
+      <button type="button" className={`shiny-cta ${className}`} onClick={onClick}>
         <span>{children}</span>
       </button>
     </>

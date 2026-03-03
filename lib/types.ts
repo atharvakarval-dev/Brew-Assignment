@@ -23,6 +23,11 @@ export interface SentimentResult {
   score: number;
   summary: string;
   insights: string[];
+  reviews?: {
+    author: string;
+    content: string;
+    avatar?: string;
+  }[];
   cachedAt: string;
 }
 
