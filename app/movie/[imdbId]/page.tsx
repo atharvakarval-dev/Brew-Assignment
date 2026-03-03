@@ -37,6 +37,44 @@ function getAuthorInitials(name: string): string {
     .join("");
 }
 
+function formatReviewText(text: string): JSX.Element {
+  // Handle multiple markdown patterns: ***bold***, **bold**, *italic*, _italic_, __bold__
+  const parts = text.split(/(\*\*\*.*?\*\*\*|\*\*.*?\*\*|__.*?__|\*.*?\*|_.*?_)/);
+  
+  return (
+    <>
+      {parts.map((part, index) => {
+        // Bold and italic with triple asterisks
+        if (part.startsWith('***') && part.endsWith('***')) {
+          const text = part.slice(3, -3);
+          return <strong key={index}><em>{text}</em></strong>;
+        }
+        // Bold with double asterisks
+        if (part.startsWith('**') && part.endsWith('**')) {
+          const boldText = part.slice(2, -2);
+          return <strong key={index}>{boldText}</strong>;
+        }
+        // Bold with double underscores
+        if (part.startsWith('__') && part.endsWith('__')) {
+          const boldText = part.slice(2, -2);
+          return <strong key={index}>{boldText}</strong>;
+        }
+        // Italic with single asterisk
+        if (part.startsWith('*') && part.endsWith('*') && !part.startsWith('**')) {
+          const italicText = part.slice(1, -1);
+          return <em key={index}>{italicText}</em>;
+        }
+        // Italic with single underscore
+        if (part.startsWith('_') && part.endsWith('_') && !part.startsWith('__')) {
+          const italicText = part.slice(1, -1);
+          return <em key={index}>{italicText}</em>;
+        }
+        return <span key={index}>{part}</span>;
+      })}
+    </>
+  );
+}
+
 const stagger = {
   container: {
     hidden: {},
@@ -299,7 +337,7 @@ export default function MovieDetailPage(): JSX.Element {
                         <div className="relative z-10">
                           <p className="text-[0.95rem] leading-[1.72] text-[color:var(--text-secondary)]">
                             <span className="mr-1 text-[1.2rem] leading-none text-primary">&quot;</span>
-                            {review.content}
+                            {formatReviewText(review.content)}
                           </p>
 
                           <div className="mt-5 flex flex-col-reverse items-start gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">

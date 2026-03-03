@@ -2,14 +2,10 @@
 
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { Suspense, lazy, useState } from "react";
+import { useState } from "react";
 
 import { SearchBar } from "@/components/SearchBar";
 import { ShinyButton } from "@/components/ui/shiny-button";
-
-const Dithering = lazy(() =>
-  import("@paper-design/shaders-react").then((mod) => ({ default: mod.Dithering }))
-);
 
 const EXAMPLE_MOVIES = [
   { label: "The Matrix tt0133093", imdbId: "tt0133093" },
@@ -59,19 +55,10 @@ export function CTASection(): JSX.Element {
             className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(to_bottom,rgba(9,7,5,0.16)_0%,rgba(9,7,5,0.55)_100%)]"
           />
 
-          <Suspense fallback={<div className="absolute inset-0 bg-muted/20" />}>
-            <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.15] mix-blend-screen">
-              <Dithering
-                colorBack="#00000000"
-                colorFront="#EC4E02"
-                shape="warp"
-                type="4x4"
-                speed={isHovered ? 0.6 : 0.2}
-                className="size-full"
-                minPixelRatio={1}
-              />
-            </div>
-          </Suspense>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-orange-500/10 via-transparent to-orange-600/5 opacity-60"
+          />
 
           {PARTICLES.map((particle) => (
             <motion.span
