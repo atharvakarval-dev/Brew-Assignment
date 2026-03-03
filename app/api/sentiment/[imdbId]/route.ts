@@ -19,7 +19,7 @@ interface RouteContext {
 
 type ReviewItem = NonNullable<SentimentResult["reviews"]>[number];
 
-const MIN_REVIEW_COUNT = 3;
+const MIN_REVIEW_COUNT = 1;
 const MAX_REVIEW_LENGTH = 420;
 const SENTIMENT_CACHE_CONTROL = "public, max-age=60, s-maxage=86400, stale-while-revalidate=604800";
 
@@ -37,8 +37,8 @@ function trimReviewPayload(reviews: ReviewItem[]): ReviewItem[] {
   }));
 }
 
-const getCachedSentiment = unstable_cache(
-  async (imdbId: string): Promise<{ sentiment: SentimentResult; aiDuration: number }> => {
+const getCachedSentiment = (imdbId: string) => unstable_cache(
+  async (): Promise<{ sentiment: SentimentResult; aiDuration: number }> => {
     const [movieResult, tmdbResult] = await Promise.allSettled([
       fetchMovie(imdbId),
       getTMDBReviews(imdbId) as Promise<ReviewItem[]>
@@ -51,9 +51,13 @@ const getCachedSentiment = unstable_cache(
     const movie = movieResult.value;
 
     let reviews: ReviewItem[];
+    
     try {
       if (tmdbResult.status === "fulfilled" && tmdbResult.value.length >= MIN_REVIEW_COUNT) {
         reviews = tmdbResult.value;
+      } else if (tmdbResult.status === "fulfilled" && tmdbResult.value.length > 0) {
+        const mockReviews = toReviewObjects(getMockReviewsByGenre(movie.Genre, 6 - tmdbResult.value.length));
+        reviews = [...tmdbResult.value, ...mockReviews];
       } else {
         reviews = toReviewObjects(getMockReviewsByGenre(movie.Genre, 6));
       }
@@ -75,7 +79,7 @@ const getCachedSentiment = unstable_cache(
 
     return { sentiment, aiDuration };
   },
-  ["sentiment-by-imdb-id"],
+  ["sentiment-by-imdb-id", imdbId],
   { revalidate: 86400 }
 );
 
@@ -98,7 +102,7 @@ export async function GET(
   }
 
   try {
-    const { sentiment, aiDuration } = await getCachedSentiment(imdbId);
+    const { sentiment, aiDuration } = await getCachedSentiment(imdbId)();
     const totalDuration = telemetry.endTimer(requestStart);
     const cacheHit = totalDuration < 200;
     
