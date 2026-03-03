@@ -67,9 +67,7 @@ export function MovieCard({ movie }: MovieCardProps): JSX.Element {
             </span>
             <span className="pb-[2px] text-[0.8rem] text-[color:var(--text-tertiary)]">/10</span>
           </div>
-          <p className="mt-1 text-[0.75rem] text-[color:var(--text-tertiary)]">
-            {movie.imdbVotes ? `(${movie.imdbVotes} votes)` : "(Votes unavailable)"}
-          </p>
+
           <p className="sr-only">{`IMDb ${movie.imdbRating}`}</p>
         </div>
 
