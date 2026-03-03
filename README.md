@@ -2,7 +2,7 @@
 
 > **Brew Full-Stack Developer Internship Assignment** | Built with Next.js 14, Groq AI & ❤️
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit_App-gold?style=for-the-badge)](https://your-deployment-url.vercel.app)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit_App-gold?style=for-the-badge)](https://brew-assignment-cyan.vercel.app/)
 [![Tests](https://img.shields.io/badge/✓_Tests-Passing-green?style=for-the-badge)](#testing)
 
 ---
@@ -29,7 +29,7 @@ Ever wondered what audiences **really** think about a movie? Drop any IMDb ID (l
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/yourusername/brew-assignment.git
+git clone https://github.com/atharvakarval-dev/brew-assignment.git
 cd brew-assignment
 
 # 2. Install dependencies
@@ -282,9 +282,9 @@ GROQ_API_KEY = gsk_...
 
 ## 📧 Contact
 
-**Developer:** Your Name  
-**Email:** your.email@example.com  
-**GitHub:** [@yourusername](https://github.com/yourusername)  
+**Developer:** Atharva Karval
+**Email:** atharva.shashikant.karval@gmail.com  
+**GitHub:** [@yourusername](https://github.com/atharvakarval-dev)  
 **Assignment:** Brew Full-Stack Internship Round 1
 
 ---
